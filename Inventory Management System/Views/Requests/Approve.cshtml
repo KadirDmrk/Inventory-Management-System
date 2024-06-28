@@ -1,0 +1,32 @@
+﻿@model Inventory_Management_System.Models.Class.Request
+
+@{
+    ViewBag.Title = "Approve";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Talep Onayla</h2>
+
+<p>@Model.Description</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label>
+            @Html.RadioButtonFor(model => model.IsApproved, true)
+            Onayla
+        </label>
+        <label>
+            @Html.RadioButtonFor(model => model.IsApproved, false)
+            Reddet
+        </label>
+    </div>
+
+
+}
+
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>
+
+

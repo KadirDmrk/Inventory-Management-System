@@ -1,0 +1,23 @@
+﻿@model Inventory_Management_System.Models.Class.Hardware.Processor
+@{
+    ViewBag.Title = "ProcessorImport";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("ProcessorUpdate", "Device", FormMethod.Post))
+{
+    <div class="form-group">
+
+        @Html.LabelFor(x => x.ProcessorID)
+        @Html.TextBoxFor(x => x.ProcessorID, new { @class = "form-control" })
+
+        @Html.LabelFor(x => x.ProcessorName)
+        @Html.TextBoxFor(x => x.ProcessorName, new { @class = "form-control" })
+
+    </div>
+    <button class="btn btn-warning"> İşlemci Güncelle  </button>
+}
+
+
+
+

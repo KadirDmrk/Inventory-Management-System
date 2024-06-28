@@ -1,0 +1,75 @@
+﻿@model Inventory_Management_System.Models.Class.Admin
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Yönetim Paneli</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/weblogin2/css/style.css">
+
+</head>
+<body>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">
+                        BBN AIRLINES
+                    </h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-5">
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">
+                                </h3>
+                            </div>
+                        </div>
+                        @if (TempData["AlertMessage"] != null)
+                        {
+                            <div class="alert badge-danger">
+                                <strong></strong>@TempData["AlertMessage"]
+                            </div>
+                        }
+                        @using (Html.BeginForm("AdminLogin", "Login", FormMethod.Post))
+                        {
+                            <div class="form-group">
+                                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
+                                @Html.TextBoxFor(x => x.Username, new { @class = "form-control rounded-left", placeholder = "Username", required = "required", maxlength = "30" })
+                            </div>
+                            <div class="form-group">
+                                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
+                                @Html.PasswordFor(x => x.Password, new { @class = "form-control rounded-left", placeholder = "Password", required = "required", maxlength = "30" })
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                                <div class="w-100"></div>
+                                <div class="w-100 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary rounded submit">Login</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="~/weblogin2/js/jquery.min.js"></script>
+    <script src="~/weblogin2/js/popper.js"></script>
+    <script src="~/weblogin2/js/bootstrap.min.js"></script>
+    <script src="~/weblogin2/js/main.js"></script>
+
+</body>
+</html>
+

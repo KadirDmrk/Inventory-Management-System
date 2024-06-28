@@ -1,0 +1,159 @@
+﻿body, .content {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    background-color: #ffffff; /* Beyaz arka plan */
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px; /* Sağ kenarlık çizgisi için boşluk */
+    padding-left: 10px; /* Sol kenarlık çizgisi için boşluk */
+    width: calc(100% + 20px); /* Header'ın genişliği + sağ ve sol padding */
+    justify-content: space-between; /* İçeriği sağa ve sola doğru genişlet */
+    box-sizing: border-box; /* padding ve border'ı hesaba katarak genişlik ayarı yap */
+    margin-right: -10px; /* Sağ tarafta ekstra genişlik */
+    margin-left: -10px; /* Sol tarafta ekstra genişlik */
+}
+
+    .header .logo {
+        display: flex;
+        align-items: center;
+        margin-right: auto;
+    }
+
+        .header .logo img {
+            width: 160px;
+            height: 30px;
+        }
+
+    .header .vertical-line {
+        border-left: 1px solid black;
+        height: 50px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .header h2 {
+        margin: 20px;
+        flex-grow: 1;
+        text-align: center;
+        font-size: 18px;
+    }
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .info-table td, .info-table th {
+        padding: 8px;
+        border: 1px solid black;
+    }
+
+    .info-table td {
+        width: 25%;
+    }
+
+    .info-table th {
+        background-color: #ffffff;
+        text-align: center;
+    }
+
+    .info-table .section-title {
+        background-color: #ffffff;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .info-table .debit-cell {
+        height: 50px;
+        vertical-align: top;
+        border: 1px solid black;
+    }
+
+    .info-table .empty-row td {
+        border: none;
+    }
+
+    .info-table .no-border {
+        border: none;
+    }
+
+.footer {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid black;
+    text-align: center;
+}
+
+    .footer p {
+        margin: 0;
+        width: 100%;
+    }
+
+.signature-section {
+    page-break-inside: avoid;
+}
+
+    .signature-section .signature-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .signature-section .signature-row div {
+            width: 48%;
+        }
+
+.no-border-rows td {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-top: none;
+}
+
+.no-border-rows th {
+    border: 1px solid black;
+}
+
+.print-button {
+    display: block;
+    padding: 10px 20px;
+    font-size: 16px;
+    position: fixed; /* Changed to fixed so it remains visible while scrolling */
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 9999; /* Ensures it's on top of other elements */
+}
+
+    .print-button:hover {
+        background-color: #45a049;
+    }
+
+@media print {
+    .print-button,
+    .no-print {
+        display: none !important;
+    }
+}

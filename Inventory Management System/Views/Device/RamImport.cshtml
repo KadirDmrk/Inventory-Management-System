@@ -1,0 +1,21 @@
+﻿@model Inventory_Management_System.Models.Class.Hardware.Ram
+@{
+    ViewBag.Title = "RamImport";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("RamUpdate", "Device", FormMethod.Post))
+{
+    <div class="form-group">
+
+        @Html.LabelFor(x => x.RamID)
+        @Html.TextBoxFor(x => x.RamID, new { @class = "form-control" })
+
+        @Html.LabelFor(x => x.RamName)
+        @Html.TextBoxFor(x => x.RamName, new { @class = "form-control" })
+
+    </div>
+    <button class="btn btn-warning"> Ram Güncelle </button>
+}
+
+

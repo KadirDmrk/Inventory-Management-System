@@ -1,0 +1,23 @@
+﻿
+@model string
+
+@{
+    ViewBag.Title = "Garanti Bilgileri";
+}
+
+<h2>Garanti Bilgileri</h2>
+
+@if (!string.IsNullOrEmpty(Model))
+{
+    <div>
+        @Html.Raw(Model)
+    </div>
+}
+else
+{
+    <p>Garanti bilgileri alınamadı.</p>
+}
+
+<p>
+    @Html.ActionLink("Yeni bir seri numarası sorgula", "Index")
+</p>

@@ -1,0 +1,27 @@
+﻿@model Inventory_Management_System.Models.Class.Hardware.Monitor
+@{
+    ViewBag.Title = "MonitorImport";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("MonitorUpdate", "Device", FormMethod.Post))
+{
+<div class="form-group">
+
+    @Html.LabelFor(x => x.MonitorID)
+    @Html.TextBoxFor(x => x.MonitorID, new { @class = "form-control" })
+
+    @Html.LabelFor(x => x.MonitorName)
+    @Html.TextBoxFor(x => x.MonitorName, new { @class = "form-control" })
+
+    @Html.LabelFor(x => x.SerialNumber)
+    @Html.TextBoxFor(x => x.SerialNumber, new { @class = "form-control" })
+
+</div>
+    <button class="btn btn-warning"> Monitör Güncelle </button>
+}
+
+
+
+
+

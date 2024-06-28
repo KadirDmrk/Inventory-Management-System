@@ -1,0 +1,37 @@
+﻿@using Inventory_Management_System.Models.Class
+@model List<ProductDebit>
+@{
+    ViewBag.Title = "GenerateWordDocument";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<ol class="breadcrumb" mb-4>
+    <li class="breadcrumb-item active">Personel Adı: @ViewBag.dpers </li>
+</ol>
+
+<table class="table table-condensed">
+    <tr>
+        <th>Ürün</th>
+        <th>Marka</th>
+        <th>Açıklama </th>
+        <th>Seri Numarası</th>
+        <th>Tarih</th>
+        <th>Zimmetten Düş</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Product.ProductName</td>
+            <td>@x.DebitProductBrand</td>
+            <td>@x.Description</td>
+            <td>@x.DebitProductSerialNumber</td>
+            <td>@x.Datetime</td>
+            <td>
+                <a href="@Url.Action("ReturnEmbezzlementDelete", "DebitProduct", new { id = x.DebitID })" class="btn btn-danger" onclick="return confirm('Bu ürünü iptal etmek istiyor musunuz?');">Ürünü İptal et</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<a href="@Url.Action("GenerateWordDocument", "DebitProduct", new { employeeId = ViewBag.EmployeeId })" class="btn btn-primary">Zimmet Formu Oluştur</a>

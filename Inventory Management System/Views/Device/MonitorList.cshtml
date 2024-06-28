@@ -1,0 +1,54 @@
+﻿@using Inventory_Management_System.Models.Class.Hardware
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Monitor>
+@{
+    ViewBag.Title = "MonitorList";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong></strong>@TempData["AlertMessage"]
+    </div>
+}
+
+@using (Html.BeginForm("MonitorList", "Device", FormMethod.Get))
+{
+    <p>
+        Monitör Adı: @Html.TextBox("p")
+        <input type="submit" value=" Ara" />
+    </p>
+}
+
+
+<table class="table table-bordered">
+    <tr>
+
+        <th> MONİTÖR</th>
+        <th> SERİ NUMARASI</th>
+        <th> SİL</th>
+        <th> GÜNCELLE</th>
+
+    </tr>
+    <tbody>
+        @foreach (var ctgr in Model)
+        {
+            <tr>
+
+                <td> @ctgr.MonitorName</td>
+                <td> @ctgr.SerialNumber</td>
+                <td> <a href="/Device/MonitorDelete/@ctgr.MonitorID " class="btn btn-danger"> SİL</a></td>
+                <td> <a href="/Device/MonitorImport/@ctgr.MonitorID " class="btn btn-success"> GUNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("MonitorList", new { sayfa }))
+<a href="/Device/MonitorAdd" class="btn btn-primary"> Monitör Ekle</a>
+
+
+
+
+

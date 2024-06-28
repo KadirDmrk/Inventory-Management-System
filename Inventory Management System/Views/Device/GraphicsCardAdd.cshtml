@@ -1,0 +1,22 @@
+﻿@model Inventory_Management_System.Models.Class.Hardware.GraphicsCard
+@{
+    ViewBag.Title = "GraphicsCardAdd";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+
+
+    <div>
+        <label> Ekran Kartı</label>
+        @Html.TextBoxFor(m => m.GraphicsCardName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.GraphicsCardName, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="Btn1"> Ekran Kartı Ekle</button>
+    </div>
+
+
+</form>
+
+

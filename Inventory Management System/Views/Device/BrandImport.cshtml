@@ -1,0 +1,19 @@
+﻿@model Inventory_Management_System.Models.Class.Hardware.Brand
+@{
+    ViewBag.Title = "BrandImport";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("BrandUpdate", "Device", FormMethod.Post))
+{
+    <div class="form-group">
+
+        @Html.LabelFor(x => x.BrandID)
+        @Html.TextBoxFor(x => x.BrandID, new { @class = "form-control" })
+
+        @Html.LabelFor(x => x.BrandName)
+        @Html.TextBoxFor(x => x.BrandName, new { @class = "form-control" })
+
+    </div>
+    <button class="btn btn-warning"> Marka Güncelle </button>
+}

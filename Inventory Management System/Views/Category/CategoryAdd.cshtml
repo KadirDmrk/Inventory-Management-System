@@ -1,0 +1,30 @@
+﻿@model Inventory_Management_System.Models.Class.Category
+@{
+    ViewBag.Title = "CategoryAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+
+<form class="form-group" method="post" onsubmit="return confirm('Bu işlemi yapmak istiyor musunuz?');">
+
+    <div>
+        <label>Kategori Adı</label>
+        @Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", required = "required", maxlength = "50", oninput = "validateInput(this)", style = "width: 300px;" })
+        @Html.ValidationMessageFor(m => m.CategoryName, "", new { @style = "color:red" })
+    </div>
+    <br />
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="Btn1">Kategori Ekle</button>
+    </div>
+
+</form>
+<br />
+
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>
+
+
+<script>
+    function validateInput(input) {
+        input.value = input.value.replace(/[^a-zA-ZğüşıöçĞÜŞİÖÇ\s.,;]/g, '');
+    }
+</script>

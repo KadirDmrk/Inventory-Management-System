@@ -1,0 +1,52 @@
+﻿@using Inventory_Management_System.Models.Class.Hardware
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Ram>
+@{
+    ViewBag.Title = "RamList";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong></strong>@TempData["AlertMessage"]
+    </div>
+}
+
+@using (Html.BeginForm("RamList", "Device", FormMethod.Get))
+{
+    <p>
+        Ram Adı: @Html.TextBox("p")
+        <input type="submit" value=" Ara" />
+    </p>
+}
+
+
+<table class="table table-bordered">
+    <tr>
+
+        <th> RAM</th>
+        <th> SİL</th>
+        <th> GÜNCELLE</th>
+
+    </tr>
+    <tbody>
+        @foreach (var ctgr in Model)
+        {
+            <tr>
+
+                <td> @ctgr.RamName</td>
+                <td> <a href="/Device/RamDelete/@ctgr.RamID" class="btn btn-danger"> SİL</a></td>
+                <td> <a href="/Device/RamImport/@ctgr.RamID" class="btn btn-success"> GUNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("RamList", new { sayfa }))
+<a href="/Device/RamAdd" class="btn btn-primary"> Ram Ekle</a>
+
+
+
+

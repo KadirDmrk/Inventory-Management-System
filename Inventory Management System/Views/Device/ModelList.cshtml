@@ -1,0 +1,48 @@
+﻿@using Inventory_Management_System.Models.Class.Hardware
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Model>
+@{
+    ViewBag.Title = "ModelList";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong></strong>@TempData["AlertMessage"]
+    </div>
+}
+
+@using (Html.BeginForm("ModelList", "Device", FormMethod.Get))
+{
+    <p>
+        Model Adı: @Html.TextBox("p")
+        <input type="submit" value=" Ara" />
+    </p>
+}
+
+
+<table class="table table-bordered">
+    <tr>
+
+        <th> MODEL ADI</th>
+        <th> SİL</th>
+        <th> GÜNCELLE</th>
+
+    </tr>
+    <tbody>
+        @foreach (var ctgr in Model)
+        {
+            <tr>
+
+                <td> @ctgr.ModelName</td>
+                <td> <a href="/Device/ModelDelete/@ctgr.ModelID" class="btn btn-danger"> SİL</a></td>
+                <td> <a href="/Device/ModelImport/@ctgr.ModelID" class="btn btn-success"> GUNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("ModelList", new { sayfa }))
+<a href="/Device/ModelAdd" class="btn btn-primary"> Model Ekle</a>

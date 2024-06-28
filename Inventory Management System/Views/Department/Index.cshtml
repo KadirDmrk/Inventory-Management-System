@@ -1,0 +1,48 @@
+﻿@using Inventory_Management_System.Models.Class
+@model List<Department>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong></strong>@TempData["AlertMessage"]
+    </div>
+}
+
+<table class="table table-bordered">
+    <tr>
+
+        <th> DEPARTMAN ADI</th>
+        <th> SİL</th>
+        <th> GÜNCELLE</th>
+        <th> İNCELE</th>
+
+    </tr>
+    <tbody>
+        @foreach (var k in Model)
+        {
+            <tr>
+
+                <td> @k.DepartmentName</td>
+                <td>
+                    <a href="~/Department/DepartmentDelete/@k.DepartmentID" class="btn btn-danger"
+                       onclick="return confirm('Bu Departmanı silmek istiyor musunuz?');">SİL</a>
+                </td>
+
+                <td> <a href="~/Department/DepartmentImport/@k.DepartmentID" class="btn btn-success"> GUNCELLE</a></td>
+                <td><a href="~/Department/DepartmentDetail/@k.DepartmentID" class="btn btn-success" style="background-color:lightcoral;color:white"> Detaylar </a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>
+
+@*<a href="/Department/NewDepartment/" class="btn btn-primary"> Departman Ekle</a>*@
+
+
+

@@ -1,0 +1,23 @@
+﻿@model Inventory_Management_System.Models.Class.Hardware.Processor
+@{
+    ViewBag.Title = "ProcessorAdd";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+
+
+    <div>
+        <label> İşlemci Adı</label>
+        @Html.TextBoxFor(m => m.ProcessorName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ProcessorName, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="Btn1"> İşlemci</button>
+    </div>
+
+
+</form>
+
+
+

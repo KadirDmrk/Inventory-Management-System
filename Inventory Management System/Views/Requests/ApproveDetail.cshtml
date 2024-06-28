@@ -1,0 +1,118 @@
+﻿@model Inventory_Management_System.Models.Class.Request
+
+@{
+    ViewBag.Title = "ApproveDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Content/DemandsForm.js"></script>
+
+<link href="~/Content/DemandsForm.css" rel="stylesheet" />
+
+<br />
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "demo-form1" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="input-wrap">
+        <label class="f-title">PERSONEL TALEP FORMU</label>
+    </div>
+    <div class="input-wrap">
+        @Html.HiddenFor(x => x.Trackingcode)
+        @Html.LabelFor(x => x.Trackingcode)
+        @Html.TextBoxFor(x => x.Trackingcode, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.Position)
+        @Html.TextBoxFor(x => x.Position, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.Department)
+        @Html.TextBoxFor(x => x.Department, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.Chapter)
+        @Html.TextBoxFor(x => x.Chapter, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.Staff)
+        @Html.TextBoxFor(x => x.Staff, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.EducationalStatus)
+        @Html.TextBoxFor(x => x.EducationalStatus, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.PreferredSchools)
+        @Html.TextBoxFor(x => x.PreferredSchools, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.Degree)
+        @Html.TextBoxFor(x => x.Degree, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.Specialty)
+        @Html.TextBoxFor(x => x.Specialty, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.Experience)
+        @Html.TextBoxFor(x => x.Experience, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.ForeignLanguage)
+        @Html.TextBoxFor(x => x.ForeignLanguage, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.ComputerSkills)
+        @Html.TextBoxFor(x => x.ComputerSkills, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.MilitaryService)
+        @Html.TextBoxFor(x => x.MilitaryService, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.Sex)
+        @Html.TextBoxFor(x => x.Sex, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.AgeGroup)
+        @Html.TextBoxFor(x => x.AgeGroup, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.AbilityCertification)
+        @Html.TextBoxFor(x => x.AbilityCertification, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.JobDefinition)
+        @Html.TextAreaFor(x => x.JobDefinition, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.RequestedBy)
+        @Html.TextBoxFor(x => x.RequestedBy, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+    <div class="input-wrap">
+        @Html.LabelFor(x => x.Description)
+        @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <br />
+}
+
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>
+

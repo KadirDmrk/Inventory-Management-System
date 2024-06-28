@@ -1,0 +1,23 @@
+﻿@model Inventory_Management_System.Models.Class.Hardware.Ram
+@{
+    ViewBag.Title = "RamAdd";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+
+
+    <div>
+        <label> Ram Adı</label>
+        @Html.TextBoxFor(m => m.RamName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.RamName, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="Btn1"> Ram Ekle</button>
+    </div>
+
+
+</form>
+
+
+

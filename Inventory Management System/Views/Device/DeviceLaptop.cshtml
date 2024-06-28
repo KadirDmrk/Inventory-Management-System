@@ -1,0 +1,50 @@
+﻿
+@using Inventory_Management_System.Models.Class
+@model List<Devices>
+@{
+    ViewBag.Title = "DeviceLaptop";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@*@if (TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-success">
+            <strong></strong>@TempData["AlertMessage"]
+        </div>
+    }*@
+
+<table class="table table-bordered">
+    <tr>
+        <th> ID</th>
+        <th> SERİ NUMARASI </th>
+        <th> MARKA</th>
+        <th> MODEL</th>
+        <th> İŞLEMCİ</th>
+        <th> MONİTÖR</th>
+        <th> HARDDİSK</th>
+        <th> SİL</th>
+        <th> GÜNCELLE</th>
+
+    </tr>
+    <tbody>
+        @foreach (var k in Model)
+        {
+            <tr>
+
+                <td> @k.DevicesID</td>
+                <td> @k.SerialNumber</td>
+                <td> @k.Brand</td>
+                <td> @k.Model</td>
+                <td> @k.Processor</td>
+                <td> @k.Monitors</td>
+                <td> @k.HardDrive</td>
+                <td> <a href="/Department/DepartmentDelete/@k.DevicesID" class="btn btn-danger"> SİL</a></td>
+                <td> <a href="/Department/DepartmentImport/@k.DevicesID" class="btn btn-success"> GUNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Department/NewDepartment/" class="btn btn-primary"> Bilgisayar Ekle</a>
+
+

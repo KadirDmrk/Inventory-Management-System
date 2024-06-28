@@ -1,0 +1,32 @@
+﻿
+@model Inventory_Management_System.Models.Class.Devices
+@{
+    ViewBag.Title = "DeviceAdd";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+
+    @Html.LabelFor(x => x.SerialNumber)
+    @Html.TextBoxFor(x => x.SerialNumber, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.SerialNumber, "", new { @style = "color:blue" })
+    <br />
+    @Html.LabelFor(x => x.Brand)
+    @Html.TextBoxFor(x => x.Brand, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Model)
+    @Html.TextBoxFor(x => x.Model, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Processor)
+    @Html.TextBoxFor(x => x.Processor, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Monitors)
+    @Html.TextBoxFor(x => x.Monitors, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.HardDrive)
+    @Html.TextBoxFor(x => x.HardDrive, new { @class = "form-control" })
+
+    <br />
+    <button class="btn btn-primary"> Kaydet</button>
+</form>
+

@@ -1,0 +1,97 @@
+﻿
+@page {
+    size: A4;
+    margin: 20mm;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+    .logo img {
+        width: 160px;
+        height: 30px;
+    }
+
+.vertical-line {
+    border-left: 1px solid black;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.header h2 {
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .info-table td, .info-table th {
+        padding: 8px;
+        border: 1px solid black;
+    }
+
+    .info-table th {
+        background-color: #ffffff;
+        text-align: center;
+    }
+
+.section-title {
+    background-color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid black;
+}
+
+.debit-cell {
+    height: 50px;
+    vertical-align: top;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.signature-section {
+    page-break-inside: avoid;
+}
+
+.signature-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .signature-row div {
+        width: 48%;
+    }
+
+

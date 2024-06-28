@@ -1,0 +1,43 @@
+﻿@using Inventory_Management_System.Models.Class
+@model List<ProductDebit>
+@{
+    ViewBag.Title = "Department Employees Debit";
+}
+
+<h2>Department Employees Debit</h2>
+<p>Personel Adı: @ViewBag.dpers</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ürün</th>
+            <th>Marka</th>
+            <th>Açıklama</th>
+            <th>Seri Numarası</th>
+            <th>Tarih</th>
+            <th>Zimmetten Düş</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Product.ProductName</td>
+                <td>@item.DebitProductBrand</td>
+                <td>@item.Description</td>
+                <td>@item.DebitProductSerialNumber</td>
+                <td>@item.Datetime.ToString("dd.MM.yyyy HH:mm:ss")</td>
+                <td>
+                    <button class="btn btn-danger">Ürünü İptal et</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Yeni eklenen buton -->
+<form method="post" action="@Url.Action("GenerateWordDocument", "DebitProduct", new { EmployeesID = ViewBag.employeeId })">
+    <button type="submit" class="btn btn-primary">Verileri Word'e Yazdır</button>
+</form>
+
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>

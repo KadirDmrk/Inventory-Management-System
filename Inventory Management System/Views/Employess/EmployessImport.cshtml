@@ -1,0 +1,41 @@
+﻿@model Inventory_Management_System.Models.Class.Employees
+@{
+    ViewBag.Title = "EmployessImport";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+
+@using (Html.BeginForm("EmployessUpdate", "Employess", FormMethod.Post, new { onsubmit = "return confirm('Bu işlemi yapmak istiyor musunuz?');" }))
+{
+<div class="form-group">
+    @Html.HiddenFor(x => x.EmployeeID)
+    @Html.LabelFor(x => x.EmployeeName)
+    @Html.TextBoxFor(x => x.EmployeeName, new { @class = "form-control", maxlength = "50", oninput = "validateInput(this)" })
+    <br />
+
+    @Html.LabelFor(x => x.EmployeeSurname)
+    @Html.TextBoxFor(x => x.EmployeeSurname, new { @class = "form-control", maxlength = "50", oninput = "validateInput(this)" })
+    <br />
+    @Html.LabelFor(x => x.EmployessTask)
+    @Html.TextBoxFor(x => x.EmployessTask, new { @class = "form-control", maxlength = "50", oninput = "validateInput(this)" })
+    <br />
+    @Html.LabelFor(x => x.Department)
+    @Html.DropDownListFor(m => m.Departmentid, (List<SelectListItem>)ViewBag.prdc, new { @class = "form-control", maxlength = "50" })
+    <br />
+    @Html.LabelFor(x => x.EmployeeMail)
+    @Html.TextBoxFor(x => x.EmployeeMail, new { @class = "form-control", maxlength = "50" })
+
+</div>
+    <br />
+    <button class="btn btn-warning"> Personel Güncelle </button>
+}
+<br />
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>
+
+
+<script>
+    function validateInput(input) {
+        input.value = input.value.replace(/[^a-zA-ZğüşıöçĞÜŞİÖÇ\s.,;]/g, '');
+    }
+
+</script>

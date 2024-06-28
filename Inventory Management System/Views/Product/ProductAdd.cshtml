@@ -1,0 +1,82 @@
+﻿@model Inventory_Management_System.Models.Class.Product
+
+@{
+    ViewBag.Title = "ProductAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>
+<br />
+<br />
+<form class="form-group" method="post" onsubmit="return confirm('Bu işlemi yapmak istiyor musunuz?');">
+    @Html.LabelFor(x => x.BillSerialNumber)
+    @Html.TextBoxFor(x => x.BillSerialNumber, new { @class = "form-control", maxlength = "50", oninput = "validateAlphanumericInput(this)", style = "width: 500px;" })
+    <br />
+    @Html.LabelFor(x => x.CompanyName)
+    @Html.TextBoxFor(x => x.CompanyName, new { @class = "form-control", maxlength = "50", oninput = "validateInput(this)", style = "width: 500px;" })
+    <br />
+    @Html.LabelFor(x => x.BillDateTime)
+    @Html.TextBoxFor(x => x.BillDateTime, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local", required = "required", style = "width: 500px;" })
+    <br />
+    @Html.LabelFor(x => x.ProductName)
+    @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control", required = "required", maxlength = "50", oninput = "validateInput(this)", style = "width: 500px;" })
+    <br />
+    @Html.LabelFor(x => x.ProductBrand)
+    @Html.TextBoxFor(x => x.ProductBrand, new { @class = "form-control", maxlength = "50", oninput = "validateInput(this)", style = "width: 500px;" })
+    <br />
+    @Html.LabelFor(x => x.SerialNumber)
+    @Html.TextBoxFor(x => x.SerialNumber, new { @class = "form-control", maxlength = "50", oninput = "validateAlphanumericInput(this)", style = "width: 500px;" })
+    <br />
+    @Html.LabelFor(x => x.Category.CategoryID)
+    @Html.DropDownListFor(x => x.Categoryid, (List<SelectListItem>)ViewBag.prdc, new { @class = "form-control", required = "required", style = "width: 500px;" })
+    <br />
+    @Html.LabelFor(x => x.Description)
+    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", maxlength = "500", oninput = "validateNumericAlpha(this)", style = "width: 500px; height: 100px;" })
+    <br />
+    @Html.LabelFor(x => x.Stok)
+    @Html.TextBoxFor(x => x.Stok, new { @class = "form-control", required = "required", maxlength = "3", oninput = "validateNumericInput(this)", style = "width: 200px;" })
+    <br />
+
+    <button class="btn btn-primary">Kaydet</button>
+</form>
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.ProductInfo))
+{
+    <div>
+        <p>Ürün Adı: @ViewBag.ProductInfo</p>
+    </div>
+}
+
+<script>
+    //$(document).ready(function () {
+    //    $("form").submit(function (event) {
+    //        var isValid = true;
+    //        $(this).find(":input[required]").each(function () {
+    //            if (!$(this).val()) {
+    //                isValid = false;
+    //                $(this).addClass("is-invalid");
+    //            }
+    //        });
+    //        if (!isValid) {
+    //            event.preventDefault();
+    //        }
+    //    });
+    //});
+
+    function validateInput(input) {
+        input.value = input.value.replace(/[^a-zA-ZğüşıöçĞÜŞİÖÇ\s.,;]/g, '');
+    }
+
+    function validateNumericAlpha(input) {
+        input.value = input.value.replace(/[^a-zA-ZğüşıöçĞÜŞİÖÇ0-9\s.,;]/g, '');
+    }
+
+    function validateNumericInput(input) {
+        input.value = input.value.replace(/\D/g, ''); // Sadece rakamları kabul etmek için
+    }
+
+    function validateAlphanumericInput(input) {
+        input.value = input.value.replace(/[^a-zA-Z0-9\s\-]/g, '');
+    }
+</script>

@@ -1,0 +1,19 @@
+﻿@model Inventory_Management_System.Models.Class.Hardware.HardDrive
+@{
+    ViewBag.Title = "HardDriveAdd";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<form class="form-group" method="post">
+
+
+    <div>
+        <label> Harddisk Adı</label>
+        @Html.TextBoxFor(m => m.HardDriveName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.HardDriveName, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="Btn1"> Harddisk Ekle</button>
+    </div>
+
+
+</form>

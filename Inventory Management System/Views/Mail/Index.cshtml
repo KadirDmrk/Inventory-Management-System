@@ -1,0 +1,75 @@
+﻿@model Inventory_Management_System.Models.SMTP
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong></strong>@TempData["AlertMessage"]
+    </div>
+}
+<link href="~/Content/Mail.css" rel="stylesheet" />
+<br />
+@using (Html.BeginForm())
+{
+
+
+<div class="container">
+    <h2>Bize Ulaşın</h2>
+    <form id="contactForm">
+        <div class="form-group">
+            <label for="name">Adınız</label>
+            <input type="text" id="name" name="name" class="form-control" required maxlength="50" pattern="[A-Za-zğĞıİüÜşŞöÖçÇ\s]+" title="Yabancı karakter kullanmayınız!!">
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-posta Adresiniz</label>
+            <input type="email" id="email" name="email" class="form-control" required maxlength="50">
+        </div>
+
+        <div class="form-group">
+            <label for="subject">Konu</label>
+            <input type="text" id="subject" name="subject" class="form-control" required maxlength="25" pattern="[A-Za-zğĞıİüÜşŞöÖçÇ\s]+" title="Yabancı karakter kullanmayınız!!">
+        </div>
+
+        <div class="form-group">
+            <label for="message">Mesajınız</label>
+            <textarea id="message" name="message" rows="4" class="form-control" required maxlength="500" pattern="[A-Za-zğĞıİüÜşŞöÖçÇ\s]+" title="Yabancı karakter kullanmayınız!!"></textarea>
+        </div>
+
+        <input type="submit" value="Gönder">
+        <p id="successMessage" style="display: none; color: green;">Mailiniz başarıyla gönderildi.</p>
+    </form>
+</div>
+
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Form submitini engelle
+
+            // Form verilerini al
+            var formData = new FormData(this);
+
+            // AJAX isteği oluştur
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'url-to-your-backend-script'); // Backend script URL'sini buraya girin
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    document.getElementById('successMessage').style.display = 'block';
+                } else {
+                    alert("Mail gönderilirken bir hata oluştu");
+                }
+            };
+            // Form verilerini gönder
+            xhr.send(formData);
+        });
+    </script>
+
+
+
+}
+
+

@@ -1,0 +1,142 @@
+﻿@using Inventory_Management_System.Models.Class
+@model List<Product>
+@{
+    ViewBag.Title = "SearchBySerialNumber";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+#pragma warning disable CS0453
+    SelectList paymentTypes = ViewBag.EmployeeList != null ? (SelectList)ViewBag.EmployeeList : null;
+    var a = paymentTypes;
+    Context c = new Context();
+}
+<br />
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong></strong>@TempData["AlertMessage"]
+    </div>
+}
+
+<br />
+<script src="~/weblogin2/js/jquery.min.js"></script>
+<script src="~/weblogin2/js/main.js"></script>
+
+
+@using (Html.BeginForm("SearchBySerialNumber", "DebitProduct", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.Label("Lütfen Seri Numarasını Giriniz ")
+        @Html.TextBox("serialNumber", null, new { @class = "form-control", required = "required", maxlength = "50", oninput = "validateInput(this)" })
+    </div>
+    <button type="submit" class="btn btn-primary" style="position: absolute; top: 153px; right:100px;">Ara</button>
+}
+
+@if (Model != null && Model.Count > 0)
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Marka Adı</th>
+                <th>Açıklama</th>
+                <th>Stok</th>
+                <th>Kategori</th>
+                <th>Durum</th>
+                <th>Seri Numarası</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                if (product.Stok > 0)
+                {
+
+
+                    <tr>
+                        <td>@product.ProductName</td>
+                        <td>@product.ProductBrand</td>
+                        <td>@product.Description</td>
+                        <td>@product.Stok</td>
+                        <td>@product.Category.CategoryName</td>
+                        <td>@product.IsActive</td>
+                        <td>@product.SerialNumber</td>
+                        <td>
+
+                            @using (Html.BeginForm("Debit", "DebitProduct", FormMethod.Post, new { onsubmit = "return confirm('Bu işlemi yapmak istiyor musunuz?');" }))
+                            {
+                                @Html.Hidden("productId", product.ProductID)
+                                <div class="col-md-12">
+                                    <label for="employeeId" class="form-label">Çalışan Seç</label>
+                                    <input type="text" id="searchEmployee" class="form-control" placeholder="Çalışan adı girin">
+                                    <select name="employeeId" id="employeeId" class="form-control" size="5">
+                                        @foreach (var item in paymentTypes)
+                                        {
+                                            var employeeId = Convert.ToInt32(item.Value);
+                                            var employee = c.Employees.FirstOrDefault(e => e.EmployeeID == employeeId);
+                                            if (employee != null)
+                                            {
+                                                <option value="@item.Value" data-employee-name="@item.Text" data-employee-surname="@employee.EmployeeSurname">@item.Text @employee.EmployeeSurname</option>
+                                            }
+                                        }
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="employeeId"></span>
+                                </div>
+                                <div class="col-md-12" style="margin-top: 10px;">
+                                    <button type="submit" class="btn btn-primary">Zimmet Et</button>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Arama sonucunda eşleşen ürün bulunamadı.</p>
+}
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#searchEmployee').on('click', function () {
+                // Dropdown'ı otomatik olarak aç
+                $('#employeeId').attr('size', 5);
+            });
+
+            $('#employeeId').change(function () {
+                var selectedEmployeeName = $('option:selected', this).attr('data-employee-name');
+                var selectedEmployeeSurname = $('option:selected', this).attr('data-employee-surname');
+                $('#searchEmployee').val(selectedEmployeeName + " " + selectedEmployeeSurname);
+
+                // Dropdown'ı otomatik olarak kapat
+                $('#employeeId').attr('size', 1);
+            });
+
+            $('#searchEmployee').on('input', function () {
+                var input, filter, select, option, i;
+                input = document.getElementById('searchEmployee');
+                filter = input.value.toUpperCase();
+                select = document.getElementById("employeeId");
+                option = select.getElementsByTagName('option');
+                for (i = 0; i < option.length; i++) {
+                    if (option[i].textContent.toUpperCase().indexOf(filter) > -1) {
+                        option[i].style.display = "";
+                    } else {
+                        option[i].style.display = "none";
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+<script>
+    function validateAlphanumericInput(input) {
+        input.value = input.value.replace(/[^a-zA-Z0-9\s]/g, ''); // Sadece rakamları, harfleri ve boşlukları kabul etmek için
+    }
+</script>

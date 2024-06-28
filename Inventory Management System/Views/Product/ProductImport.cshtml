@@ -1,0 +1,68 @@
+﻿@model Inventory_Management_System.Models.Class.Product
+@{
+    ViewBag.Title = "ProductImport";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+@using (Html.BeginForm("ProductUpdate", "Product", FormMethod.Post, new { onsubmit = "return confirm('Bu işlemi yapmak istiyor musunuz?');" }))
+{
+    <div class="form-group">
+
+        @Html.HiddenFor(x => x.ProductID)
+        @Html.LabelFor(x => x.ProductID)
+        @Html.TextBoxFor(x => x.ProductID, new { @class = "form-control", maxlength = "1", @readonly = "readonly", style = "width: 500px;" })
+        <br />
+        @Html.LabelFor(x => x.BillSerialNumber)
+        @Html.TextBoxFor(x => x.BillSerialNumber, new { @class = "form-control", maxlength = "50", oninput = "validateAlphanumericInput(this)", style = "width: 500px;" })
+        <br />
+        @Html.LabelFor(x => x.CompanyName)
+        @Html.TextBoxFor(x => x.CompanyName, new { @class = "form-control", maxlength = "50", style = "width: 500px;" })
+        <br />
+        @Html.LabelFor(x => x.BillDateTime)
+        @Html.TextBoxFor(x => x.BillDateTime, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local", style = "width: 500px;" })
+        <br />
+        @Html.LabelFor(x => x.ProductName)
+        @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control", maxlength = "50", oninput = "validateInput(this)", style = "width: 500px;" })
+        <br />
+        @Html.LabelFor(x => x.ProductBrand)
+        @Html.TextBoxFor(x => x.ProductBrand, new { @class = "form-control", maxlength = "50", oninput = "validateInput(this)", style = "width: 500px;" })
+        <br />
+        @Html.LabelFor(x => x.SerialNumber)
+        @Html.TextBoxFor(x => x.SerialNumber, new { @class = "form-control", maxlength = "50", oninput = "validateAlphanumericInput(this)", style = "width: 500px;" })
+        <br />
+        @Html.LabelFor(x => x.Categoryid)
+        @Html.TextBoxFor(x => x.Categoryid, new { @class = "form-control", maxlength = "4", oninput = "validateNumericInput(this)", style = "width: 500px;", @readonly = "readonly" })
+        <br />
+        @Html.LabelFor(x => x.Description)
+        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", maxlength = "500", oninput = "validateNumericAlpha(this)", style = "width: 500px; height: 100px;" })
+        <br />
+        @Html.LabelFor(x => x.Stok)
+        @Html.TextBoxFor(x => x.Stok, new { @class = "form-control", maxlength = "4", oninput = "validateNumericInput(this)", style = "width: 500px;" })
+        <br />
+        <button class="btn btn-warning"> Ürün Güncelle </button>
+
+    </div>
+
+}
+
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>
+
+
+<script>
+    function validateInput(input) {
+        input.value = input.value.replace(/[^a-zA-ZğüşıöçĞÜŞİÖÇ\s.,;]/g, '');
+    }
+
+    function validateNumericInput(input) {
+        input.value = input.value.replace(/\D/g, '');
+    }
+
+    function validateNumericAlpha(input) {
+        input.value = input.value.replace(/[^a-zA-ZğüşıöçĞÜŞİÖÇ0-9\s.,;]/g, '');
+    }
+
+    function validateAlphanumericInput(input) {
+        input.value = input.value.replace(/[^a-zA-Z0-9\s]/g, '');
+    }
+</script>
+

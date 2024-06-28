@@ -1,0 +1,20 @@
+﻿@model Inventory_Management_System.Models.Class.Hardware.Brand
+@{
+    ViewBag.Title = "BrandAdd";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+
+
+    <div>
+        <label> Marka Adı </label>
+        @Html.TextBoxFor(m => m.BrandName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.BrandName, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="Btn1"> Marka Ekle</button>
+    </div>
+
+
+</form>

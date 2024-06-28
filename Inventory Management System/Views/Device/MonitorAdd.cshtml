@@ -1,0 +1,30 @@
+﻿@model Inventory_Management_System.Models.Class.Hardware.Monitor
+@{
+    ViewBag.Title = "MonitorAdd";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+
+
+    <div>
+        <label> Monitör Adı</label>
+        @Html.TextBoxFor(m => m.MonitorName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MonitorName, "", new { @style = "color:red" })
+
+        <label> Seri Numarası</label>
+        @Html.TextBoxFor(m => m.SerialNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.SerialNumber, "", new { @style = "color:red" })
+
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="Btn1"> Monitör Ekle</button>
+    </div>
+
+
+</form>
+
+
+
+
+

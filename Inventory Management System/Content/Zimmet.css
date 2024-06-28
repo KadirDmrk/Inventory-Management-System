@@ -1,0 +1,94 @@
+﻿<style >
+body {
+    font-family: Arial, sans-serif;
+}
+
+.content {
+    width: 892px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+    .header img {
+        position: absolute;
+        left: 20px;
+        top: 10px;
+    }
+
+.info-table, .debit-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+    .info-table td, .debit-table th, .debit-table td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+
+    .info-table td {
+        width: 25%;
+    }
+
+    .debit-table th {
+        background-color: #ffffff;
+    }
+
+    .debit-table td {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+    }
+
+    .debit-table tr:not(:last-child) td {
+        border-bottom: none;
+    }
+
+    .debit-table th, .debit-table td:last-child {
+        border-right: 1px solid black;
+    }
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.signature-section {
+    border: 1px solid black;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+    .signature-section p {
+        margin: 10px 0;
+    }
+
+.items-section {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+    .items-section div {
+        width: 45%;
+    }
+
+.debit-section {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 10px 0;
+    text-align: center;
+}
+
+</style >

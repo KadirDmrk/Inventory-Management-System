@@ -1,0 +1,109 @@
+﻿@using Inventory_Management_System.Models.Class
+@model List<Product>
+<br />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Context c = new Context();
+
+}
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>@TempData["AlertMessage"]</strong>
+    </div>
+}
+
+
+<table id="tbl1" class="table table-bordered" style="margin-top:20px;">
+    <thead>
+        <tr>
+
+            <th>ÜRÜN ADI</th>
+            <th>MARKASI </th>
+            <th>SERİ NUMARASI </th>
+            <th>KATEGORİ</th>
+            <th>FATURA NUMARASI</th>
+            <th>FİRMA ADI</th>
+            <th>FATURA TARİH</th>
+            <th>STOK</th>
+            <th>AÇIKLAMA</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+            <th>ZİMMET ET </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prdc in Model)
+        {
+            <tr>
+
+
+                <td> @prdc.ProductName</td>
+                <td> @prdc.ProductBrand</td>
+                <td> @prdc.SerialNumber</td>
+                <td> @prdc.Category.CategoryName</td>
+                <td> @prdc.BillSerialNumber</td>
+                <td> @prdc.CompanyName</td>
+                <td> @prdc.BillDateTime</td>
+                <td> @prdc.Stok</td>
+                <td> @prdc.Description</td>
+
+
+
+                <td>
+                    <a href="~/Product/ProductDelete/@prdc.ProductID" class="btn btn-danger"
+                       onclick="return confirm('Bu ürünü silmek istiyor musunuz?');">SİL</a>
+                </td>
+                <td>
+                    <a href="~/Product/ProductImport/@prdc.ProductID" class="btn btn-success">GÜNCELLE</a>
+                </td>
+                <td>
+                    <a href="~/DebitProduct/SearchBySerialNumber?serialNumber=@prdc.SerialNumber"
+                       class="btn btn-primary" onclick="setSerialNumber('@prdc.SerialNumber')">ZİMMET ET</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>
+<br />
+@*<a href="/Product/ProductAdd" class="btn btn-primary"> Ürün Ekle</a>*@
+<br />
+
+
+
+
+
+
+
+<script>
+
+
+
+
+    function setSerialNumber(serialNumber) {
+        document.getElementById("serialNumber").value = serialNumber;
+    }
+</script>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $('#tbl1').dataTable({
+        "language": {
+
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+
+        }
+    });
+</script>

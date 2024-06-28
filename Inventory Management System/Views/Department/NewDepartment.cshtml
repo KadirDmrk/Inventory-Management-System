@@ -1,0 +1,28 @@
+﻿@model Inventory_Management_System.Models.Class.Department
+
+@{
+    ViewBag.Title = "NewDepartment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<br />
+<form class="form-group" method="post" onsubmit="return confirm('Bu işlemi yapmak istiyor musunuz?');">
+    @Html.LabelFor(x => x.DepartmentName)
+    @Html.TextBoxFor(x => x.DepartmentName, new { @class = "form-control", required = "required", maxlength = "50", oninput = "validateInput(this)", style = "width: 500px;" })
+
+    <br />
+    <button class="btn btn-info"> Kaydet</button>
+
+</form>
+<br />
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>
+
+
+<script>
+
+
+    function validateInput(input) {
+        input.value = input.value.replace(/[^a-zA-ZğüşıöçĞÜŞİÖÇ\s.,;]/g, '');
+    }
+</script>

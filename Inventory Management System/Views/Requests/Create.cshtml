@@ -1,0 +1,215 @@
+﻿@model Inventory_Management_System.Models.Class.Request
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<script src="~/Content/DemandsForm.js"></script>
+
+<link href="~/Content/DemandsForm.css" rel="stylesheet" />
+
+@using (Html.BeginForm("Create", "Requests", FormMethod.Post, new { @class = "demo-form1", id = "personelTalepFormu" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="input-wrap">
+        <label class="f-title">PERSONEL TALEP FORMU</label>
+    </div>
+
+    <div class="input-wrap">
+        <label for="Trackingcode">Seri Numarası</label>
+        <input type="text" value="@ViewBag.serialnumber" class="form-control" readonly name="Trackingcode">
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="Position">Pozisyon</label>
+        <input type="text" name="Position" class="input" placeholder="Pozisyon Giriniz" required oninput="validateNumericAlpha(this)">
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="Department">Departman</label>
+        <input type="text" name="Department" class="input" placeholder="Departman Giriniz" required oninput="validateNumericAlpha(this)">
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="Chapter">Bölüm</label>
+        <input type="text" name="Chapter" class="input" placeholder="Bolüm Giriniz" required oninput="validateNumericAlpha(this)">
+    </div>
+
+    <div>
+        <label class="f-title">Kadro</label>
+        @Html.RadioButtonFor(model => model.Staff, "Yıllık Bütçeden Onaylı", new { id = "kadroOnayli" }) <label for="kadroOnayli">Yıllık Bütçeden Onaylı</label>
+        @Html.RadioButtonFor(model => model.Staff, "Yıllık Bütçeden Onaysız", new { id = "kadroOnaysiz" }) <label for="kadroOnaysiz">Yıllık Bütçeden Onaysız</label>
+        <span class="text-danger" id="staff-error"></span>
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title">Eğitim Durumunuz</label>
+        @Html.RadioButtonFor(model => model.EducationalStatus, "Lise", new { id = "edu1" }) <label for="edu1">Lise</label>
+        @Html.RadioButtonFor(model => model.EducationalStatus, "MTAL", new { id = "edu2" }) <label for="edu2">MTAL</label>
+        @Html.RadioButtonFor(model => model.EducationalStatus, "MYO", new { id = "edu3" }) <label for="edu3">MYO</label>
+        @Html.RadioButtonFor(model => model.EducationalStatus, "Üniversite", new { id = "edu4" }) <label for="edu4">Üniversite</label>
+        <span class="text-danger" id="education-error"></span>
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title">Yüksek Lisans </label>
+        @Html.RadioButtonFor(model => model.Degree, "Master", new { id = "edu5" }) <label for="edu5">Master</label>
+        @Html.RadioButtonFor(model => model.Degree, "Doktora", new { id = "edu6" }) <label for="edu6">Doktora</label>
+        @Html.RadioButtonFor(model => model.Degree, "Boş", new { id = "edu7" }) <label for="edu7">Boş</label>
+    </div>
+
+
+    <div class="input-wrap">
+        <label class="f-title" for="Specialty">Uzmanlık Alanı</label>
+        <input type="text" name="Specialty" class="input" placeholder="Uzmanlık Alanı..." required oninput="validateNumericAlpha(this)">
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="PreferredSchools">Tercih Edilen Okullar</label>
+        <input type="text" name="PreferredSchools" class="input" placeholder="Tercih Edilen Okullar" required oninput="validateNumericAlpha(this)">
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title">Deneyim</label>
+        @Html.RadioButtonFor(model => model.Experience, "Deneyimsiz", new { id = "exer1" }) <label for="exer1">Deneyimsiz</label>
+        @Html.RadioButtonFor(model => model.Experience, "+1 yıl", new { id = "exer2" }) <label for="exer2">+1 Yıl</label>
+        @Html.RadioButtonFor(model => model.Experience, "+3 yıl", new { id = "exer3" }) <label for="exer3">+3 Yıl</label>
+        @Html.RadioButtonFor(model => model.Experience, "+5 yıl", new { id = "exer4" }) <label for="exer4">+5 Yıl</label>
+        @Html.RadioButtonFor(model => model.Experience, "+10 yıl", new { id = "exer5" }) <label for="exer5">+10 Yıl</label>
+        <span class="text-danger" id="experince-error"></span>
+    </div>
+
+
+    <div class="input-wrap">
+        <label class="f-title" for="ForeignLanguage">Yabancı Dil</label>
+        <input type="text" name="ForeignLanguage" class="input" placeholder="İngilizce C2/ Almanca A1" required oninput="validateNumericAlpha(this)">
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="ComputerSkills">Bilgisayar Bilgisi</label>
+        <input type="text" name="ComputerSkills" class="input" placeholder="" required oninput="validateNumericAlpha(this)">
+    </div>
+
+    <div>
+        <label class="f-title">Askerlik</label>
+        @Html.RadioButtonFor(model => model.MilitaryService, "Yapıldı", new { id = "mlt1" }) <label for="mlt1">Yapıldı</label>
+        @Html.RadioButtonFor(model => model.MilitaryService, "Yapılmadı", new { id = "mlt2" }) <label for="mlt2">Yapılmadı</label>
+        @Html.RadioButtonFor(model => model.MilitaryService, "Muaf", new { id = "mlt3" }) <label for="mlt3">Muaf</label>
+        <span class="text-danger" id="military-error"></span>
+    </div>
+
+
+    <div class="input-wrap">
+        <label class="f-title" for="Sex">Cinsiyet</label>
+        <select class="input" id="Sex" name="Sex" required>
+            <option selected disabled>Lütfen Seçiniz...</option>
+            <option value="Erkek">Erkek</option>
+            <option value="Kadın">Kadın</option>
+            <option value="Belirsiz">Belirsiz</option>
+        </select>
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="AgeGroup">Yaş Aralığı</label>
+        <input type="text" name="AgeGroup" class="input" placeholder="20-25" required oninput="validateNumericAlpha(this)">
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="AbilityCertification">Diğer Teknik Bilgi Beceriler ve Aldığı Sertifikasyonlar</label>
+        <input type="text" name="AbilityCertification" class="input" placeholder="Aws/Google/Udemy" required oninput="validateNumericAlpha(this)">
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="JobDefinition">İş tanımı</label>
+        <textarea name="JobDefinition" class="textarea" required oninput="validateNumericAlpha(this)"></textarea>
+    </div>
+
+    <div class="input-wrap">
+        @Html.LabelFor(model => model.RequestedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.RequestedBy, new { htmlAttributes = new { @class = "form-control", required = "required", oninput = "validateNumericAlpha(this)" } })
+        @Html.ValidationMessageFor(model => model.RequestedBy, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="input-wrap">
+        @Html.LabelFor(model => model.RequestDate)
+        @Html.TextBoxFor(x => x.RequestDate, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local", required = "required" })
+        @Html.ValidationMessageFor(model => model.RequestDate)
+    </div>
+
+    <div class="input-wrap">
+        @Html.LabelFor(model => model.Description)
+        @Html.TextBoxFor(model => model.Description, new { @class = "form-control", required = "required", oninput = "validateNumericAlpha(this)" })
+        @Html.ValidationMessageFor(model => model.Description)
+    </div>
+
+    <div class="input-wrap">
+        @Html.LabelFor(model => model.ApproverCount)
+        @Html.DropDownListFor(model => model.ApproverCount, Enumerable.Range(1, 5).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Select", new { @class = "form-control", id = "ApproverCount", required = "required", oninput = "validateNumericAlpha(this)" })
+        @Html.ValidationMessageFor(model => model.ApproverCount)
+    </div>
+
+    <div id="approvers" class="input-wrap">
+        <!-- Onaylayıcı e-posta giriş alanları burada dinamik olarak oluşturulacak -->
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Talep Aç</button>
+}
+
+
+
+<script>
+    document.getElementById('ApproverCount').addEventListener('change', function () {
+        var count = parseInt(this.value);
+        var approversDiv = document.getElementById('approvers');
+        approversDiv.innerHTML = '';
+        for (var i = 1; i <= count; i++) {
+            var div = document.createElement('div');
+            div.className = 'form-group';
+            var label = document.createElement('label');
+            label.textContent = 'Onaylayacak Kişi ' + i;
+            var input = document.createElement('input');
+            input.type = 'email';
+            input.className = 'form-control';
+            input.name = 'Approvers[' + (i - 1) + ']'; // Doğru dizinleme sağlanıyor
+            input.required = true;
+            div.appendChild(label);
+            div.appendChild(input);
+            approversDiv.appendChild(div);
+        }
+    });
+
+    function validateNumericAlpha(input) {
+        input.value = input.value.replace(/[^a-zA-ZğüşıöçĞÜŞİÖÇ0-9\s.,;]/g, '');
+    }
+
+    document.getElementById('personelTalepFormu').addEventListener('submit', function (event) {
+        var valid = true;
+
+        var radioGroups = [
+            { name: 'Staff', errorElementId: 'staff-error' },
+            { name: 'EducationalStatus', errorElementId: 'education-error' },
+            { name: 'MilitaryService', errorElementId: 'military-error' }
+        ];
+
+        radioGroups.forEach(function (group) {
+            var radios = document.getElementsByName(group.name);
+            var checked = Array.from(radios).some(function (radio) {
+                return radio.checked;
+            });
+
+            if (!checked) {
+                valid = false;
+                document.getElementById(group.errorElementId).textContent = 'Bu alanı boş bırakmayınız';
+            } else {
+                document.getElementById(group.errorElementId).textContent = '';
+            }
+        });
+
+        if (!valid) {
+            event.preventDefault();
+        }
+    });
+
+
+</script>

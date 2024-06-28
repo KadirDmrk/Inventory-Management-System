@@ -1,0 +1,69 @@
+﻿@using Inventory_Management_System.Models.Class
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong></strong>@TempData["AlertMessage"]
+    </div>
+}
+
+@using (Html.BeginForm("Index", "Category", FormMethod.Get))
+{
+    <p>
+        Kategori Adı : @Html.TextBox("p")
+        <input type="submit" value=" Ara" />
+    </p>
+}
+
+
+<table class="table table-bordered">
+    <tr>
+        <th> KATEGORİ ID</th>
+        <th> KATEGORİ ADI</th>
+        <th> SİL</th>
+        <th> GÜNCELLE</th>
+        <th> DETAYLAR</th>
+
+    </tr>
+    <tbody>
+        @foreach (var ctgr in Model)
+        {
+            <tr>
+
+                <td> @ctgr.CategoryID</td>
+                <td> @ctgr.CategoryName</td>
+                <td>
+                    <a href="~/Category/CategoryDelete/@ctgr.CategoryID" class="btn btn-danger"
+                       onclick="return confirm('Bu kategoriyi silmek istiyor musunuz?');">SİL</a>
+                </td>
+                <td> <a href="~/Category/CategoryImport/@ctgr.CategoryID" class="btn btn-success"> GUNCELLE</a></td>
+                <td><a href="~/Category/CategoryDetail/@ctgr.CategoryID" class="btn btn-success" style="background-color:lightcoral;color:white"> DETAYLAR  </a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+@*<a href="/Category/CategoryAdd" class="btn btn-primary"> Kategori Ekle</a>*@
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+    {
+        "page-link"
+    }
+})
+<br />
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>

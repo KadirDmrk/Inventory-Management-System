@@ -1,0 +1,21 @@
+﻿@model Inventory_Management_System.Models.Class.Hardware.HardDrive
+
+@{
+    ViewBag.Title = "HardDriveImport";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("HardDriveUpdate", "Device", FormMethod.Post))
+{
+    <div class="form-group">
+
+        @Html.LabelFor(x => x.HardDriveID)
+        @Html.TextBoxFor(x => x.HardDriveID, new { @class = "form-control" })
+
+        @Html.LabelFor(x => x.HardDriveName)
+        @Html.TextBoxFor(x => x.HardDriveName, new { @class = "form-control" })
+
+    </div>
+    <button class="btn btn-warning"> Harddisk Güncelle </button>
+}

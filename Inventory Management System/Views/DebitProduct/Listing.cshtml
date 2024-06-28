@@ -1,0 +1,56 @@
+﻿@using Inventory_Management_System.Models.Class
+@model List<ProductDebit>
+@{
+    ViewBag.Title = "Listing";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Context c = new Context();
+}
+<br />
+@if (Model != null)
+{
+    <table id="tbl1" class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ÜRÜN ADI</th>
+                <th>MARKA ADI</th>
+                <th>SERİ NUMARASI</th>
+                <th>AÇIKLAMA</th>
+                <th>KATEGORİ</th>
+                <th>PERSONEL</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var employee = c.Employees.FirstOrDefault(e => e.EmployeeID == item.EmployeesID);
+                <tr>
+                    <td>@item.DebitID</td>
+                    <td>@item.Product.ProductName</td>
+                    <td>@item.DebitProductBrand</td>
+                    <td>@item.DebitProductSerialNumber</td>
+                    <td>@item.Description</td>
+                    <td>@item.Category.CategoryName</td>
+                    <td>@(employee.EmployeeName + " " + employee.EmployeeSurname)</td> 
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+}
+
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $('#tbl1').dataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+        }
+    });
+</script>

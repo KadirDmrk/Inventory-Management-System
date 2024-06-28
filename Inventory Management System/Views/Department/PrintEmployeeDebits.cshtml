@@ -1,0 +1,129 @@
+﻿@using Inventory_Management_System.Models.Class
+@model List<ProductDebit>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/Content/Print.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="content">
+        <div class="header">
+            <div class="logo">
+                <img src="~/Image/logo.png" alt="Logo">
+                <div class="vertical-line"></div>
+            </div>
+            <h2>PERSONEL ZİMMET FORMU</h2>
+        </div>
+
+        <table id="example" class="info-table">
+            <tr>
+                <td>Personel Adı Soyadı:</td>
+                <td>@ViewBag.dpers</td>
+                <td>İşe Giriş Tarihi:</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Bölümü:</td>
+                <td>@ViewBag.dpt</td>
+                <td>Görevi:</td>
+                <td>@ViewBag.abc</td>
+            </tr>
+
+            <tr>
+                <td colspan="4" class="section-title">ZİMMETLENEN MALZEMELER</td>
+            </tr>
+
+            <tr>
+                <td>Otomobil</td>
+                <td class="debit-cell"></td>
+                <td>Cep Telefonu</td>
+                <td class="debit-cell"></td>
+            </tr>
+            <tr>
+                <td>Ofis Telefonu</td>
+                <td class="debit-cell"></td>
+                <td>Şirket Hattı</td>
+                <td class="debit-cell"></td>
+            </tr>
+            <tr>
+                <td>Dizüstü Bilgisayar</td>
+                <td class="X"></td>
+                <td>ID Kart</td>
+                <td class="debit-cell"></td>
+            </tr>
+            <tr>
+                <td>Diğer</td>
+                <td class="debit-cell"></td>
+                <td>Diğer</td>
+                <td class="debit-cell"></td>
+            </tr>
+
+            <tr>
+                <td colspan="4" class="section-title">ZİMMETLENEN MALZEMELER</td>
+            </tr>
+
+            <tr class="no-border-rows">
+                <th>MARKA</th>
+                <th>MODEL</th>
+                <th>SERİ NO</th>
+                <th class="no-border">TESLİM EDEN BÖLÜM TESLİM EDEN PERSONEL/ İMZA</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr class="no-border-rows">
+                    <td>@item.DebitProductBrand</td>
+                    <td>@item.Product.ProductName</td>
+                    <td>@item.DebitProductSerialNumber</td>
+                    @if (item == Model.First())
+                    {
+                        <td class="no-border">Saim ALTUNER</td>
+                    }
+                    else
+                    {
+                        <td class="no-border"></td>
+                    }
+                </tr>
+            }
+
+            <!-- Boş satırlar için -->
+            @for (int i = Model.Count; i < 5; i++)
+            {
+                <tr class="no-border-rows empty-row">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="no-border"></td>
+                </tr>
+            }
+
+            <tr>
+                <td colspan="4" class="section-title" style="text-align: left;">
+                    <p>Yukarıda yazılı malzemeleri .... /.... /20.... tarihinde teslim aldım.</p>
+                    <p><strong>Teslim Alan Personel:</strong></p>
+                    <p>Adı Soyadı: @ViewBag.dpers</p>
+                    <p>İmza</p>
+                    <p><strong>İnsan Kaynakları Yetkilisi:</strong></p>
+                    <p>Adı Soyadı:</p>
+                    <p>İmza</p>
+                </td>
+            </tr>
+        </table>
+
+        <div class="footer">
+            <p>BBN-HR-FR-011 / Rev.00 / 31.05.2022</p>
+        </div>
+
+        <button class="print-button" onclick="window.print()">Yazdır</button>
+    </div>
+
+</body>
+</html>

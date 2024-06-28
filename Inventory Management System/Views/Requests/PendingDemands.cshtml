@@ -1,0 +1,38 @@
+﻿@model List<Inventory_Management_System.Models.Class.Request>
+@{
+    ViewBag.Title = "PendingDemands";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/Content/PendingDemands.css" rel="stylesheet" />
+<br />
+
+<br />
+<table id="tbl1" class="table table-bordered" style="margin-top:20px;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>SERİ NUMARASI</th>
+            <th>DEPARTMAN</th>
+            <th>TALEP EDEN</th>
+            <th>TARİH</th>
+            <th>GÖZAT</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var k in Model)
+        {
+            <tr>
+                <td>@k.Id </td>
+                <td>@k.Trackingcode </td>
+                <td>@k.Department </td>
+                <td>@k.RequestedBy</td>
+                <td>@k.RequestDate </td>
+                <td><a href="@Url.Action("ApproveDetail", "Requests", new { id = k.Id })" class="btn btn-success" style="background-color:lightcoral;color:white"> Detaylar </a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>
+

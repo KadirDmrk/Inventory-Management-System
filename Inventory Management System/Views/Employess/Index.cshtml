@@ -1,0 +1,65 @@
+﻿@using Inventory_Management_System.Models.Class
+@model List<Employees>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong></strong>@TempData["AlertMessage"]
+    </div>
+}
+<br />
+
+<table class="table table-bordered" id="tbl1">
+    <thead>
+        <tr>
+            <th> AD</th>
+            <th> SOYAD</th>
+            <th> DEPARTMAN</th>
+            <th> GÖREVİ</th>
+            <th> MAİL</th>
+            <th> SİL</th>
+            <th> GÜNCELLE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emply in Model)
+        {
+            <tr>
+
+                <td> @emply.EmployeeName</td>
+                <td> @emply.EmployeeSurname</td>
+                <td> @emply.Department.DepartmentName</td>
+                <td> @emply.EmployessTask</td>
+                <td> @emply.EmployeeMail</td>
+                <td>
+                    <a href="~/Employess/EmployessDelete/@emply.EmployeeID" class="btn btn-danger"
+                       onclick="return confirm('Bu Çalışanı silmek istiyor musunuz?');">SİL</a>
+                </td>
+                <td> <a href="~/Employess/EmployessImport/@emply.EmployeeID" class="btn btn-success"> GUNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>
+<br />
+
+@*<a href="/Employess/NewEmployess" class="btn btn-primary"> Personel Ekle</a>*@
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $('#tbl1').dataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+        }
+    });
+</script>

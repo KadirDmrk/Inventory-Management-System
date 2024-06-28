@@ -1,0 +1,40 @@
+﻿@using Inventory_Management_System.Models.Class
+@model List<ProductDebit>
+@{
+    ViewBag.Title = "DepartmentEmployeesDebit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<ol class="breadcrumb" mb-4">
+    <li class="breadcrumb-item active">Personel Adı: @ViewBag.dpers</li>
+</ol>
+
+<table class="table table-condensed">
+    <tr>
+        <th>Ürün</th>
+        <th>Marka</th>
+        <th>Açıklama</th>
+        <th>Seri Numarası</th>
+        <th>Tarih</th>
+        <th>Zimmetten Düş</th>
+        <th>Yazdır</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Product.ProductName</td>
+            <td>@item.DebitProductBrand</td>
+            <td>@item.Description</td>
+            <td>@item.DebitProductSerialNumber</td>
+            <td>@item.Datetime</td>
+            <td>
+                <a href="@Url.Action("ReturnEmbezzlementDelete", "DebitProduct", new { id = item.DebitID })" class="btn btn-danger" onclick="return confirm('Bu ürünü iptal etmek istiyor musunuz?');">Ürünü İptal et</a>
+            </td>
+            <td>
+                <a href="~/Department/PrintEmployeeDebits/@item.EmployeesID" class="btn btn-success" target="_blank">Sayfa Çıktısını Gör</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<button onclick="window.history.back()" class="back-button">Geriye Dön</button>

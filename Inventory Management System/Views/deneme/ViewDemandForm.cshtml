@@ -1,0 +1,132 @@
+﻿@model Inventory_Management_System.Models.Class.PersonnelDemandForm
+@{
+    ViewBag.Title = "ViewDemandForm";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Content/DemandsForm.js"></script>
+
+<link href="~/Content/DemandsForm.css" rel="stylesheet" />
+
+<form class="demo-form1" method="post" action="@Url.Action("ViewDemandForm", "PersonnelDemand")">
+
+
+    <div class="input-wrap">
+        <label class="f-title">PERSONEL TALEP FORMU</label>
+    </div>
+
+    <div class="input-wrap">
+        <label for="Trackingcode">Seri Numarası</label>
+        <input type="text" value="@ViewBag.serialnumber" class="form-control" readonly name="Trackingcode" />
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="Position">Pozisyon</label>
+        <input type="text" name="Position" class="input" placeholder="Pozisyon Giriniz" required>
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="Department">Departman</label>
+        <input type="text" name="Department" class="input" placeholder="Departman Giriniz" required>
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="Chapter">Bölüm</label>
+        <input type="text" name="Chapter" class="input" placeholder="Bolüm Giriniz" required>
+    </div>
+
+    <div>
+        <label class="f-title">Kadro</label>
+        @Html.RadioButtonFor(model => model.Staff, "Yıllık Bütçeden Onaylı", new { id = "kadroOnayli" }) <label for="kadroOnayli">Yıllık Bütçeden Onaylı</label>
+        @Html.RadioButtonFor(model => model.Staff, "Yıllık Bütçeden Onaysız", new { id = "kadroOnaysiz" }) <label for="kadroOnaysiz">Yıllık Bütçeden Onaysız</label>
+    </div>
+
+
+
+
+    <div class="input-wrap">
+        <label class="f-title">Eğitim Durumunuz</label>
+        @Html.RadioButtonFor(model => model.EducationalStatus, "Lise", new { id = "edu1" }) <label for="edu1">Lise</label>
+        @Html.RadioButtonFor(model => model.EducationalStatus, "MTAL", new { id = "edu2" }) <label for="edu2">MTAL</label>
+        @Html.RadioButtonFor(model => model.EducationalStatus, "MYO", new { id = "edu3" }) <label for="edu3">MYO</label>
+        @Html.RadioButtonFor(model => model.EducationalStatus, "Üniversite", new { id = "edu4" }) <label for="edu4">Üniversite</label>
+    </div>
+
+
+    <div>
+        <label class="f-title">Master</label>
+        @Html.RadioButtonFor(model => model.Degree, "Master", new { id = "edu5" }) <label for="edu5">Master</label>
+        @Html.RadioButtonFor(model => model.Degree, "Doktora", new { id = "edu6" }) <label for="edu6">Doktora</label>
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="EducationalStatus">Tercih Edilen Okullar </label>
+        <input type="text" name="EducationalStatus" class="input" placeholder="Tercih Edilen Okullar...">
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="Specialty">Uzmanlık Alanı</label>
+        <input type="text" name="Specialty" class="input" placeholder="Uzmanlık Alanı..." required>
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="Experience">Deneyim</label>
+        <input type="text" name="Experience" class="input" placeholder="" required>
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="ForeignLanguage">Yabancı Dil</label>
+        <input type="text" name="ForeignLanguage" class="input" placeholder="İngilizce C2/ Almanca A1">
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="ComputerSkills">Bilgisayar Bilgisi</label>
+        <input type="text" name="ComputerSkills" class="input" placeholder="">
+    </div>
+
+    <div>
+        <label class="f-title">Askerlik </label>
+        @Html.RadioButtonFor(model => model.MilitaryService, "Yapıldı", new { id = "mlt1" }) <label for="mlt1">Yapıldı</label>
+        @Html.RadioButtonFor(model => model.MilitaryService, "Yapıldı", new { id = "mlt2" }) <label for="mlt2">Yapılmadı</label>
+    </div>
+
+
+    <div class="input-wrap">
+        <label class="f-title" for="Sex">Cinsiyet</label>
+        <select class="input" id="Sex" name="Sex">
+            <option selected disabled>Lütfen Seçiniz...</option>
+            <option value="Erkek">Erkek</option>
+            <option value="Kadın">Kadın</option>
+            <option value="Belirsiz">Belirsiz</option>
+        </select>
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="AgeGroup">Yaş Aralığı </label>
+        <input type="text" name="AgeGroup" class="input" placeholder="20-25">
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="AbilityCertification">Diğer Teknik Bilgi Beceriler ve Aldığı Sertifikasyonlar</label>
+        <input type="text" name="AbilityCertification" class="input" placeholder="Aws/Google/Udemy">
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="JobDefinition">İş tanımı</label>
+        <textarea name="JobDefinition" class="textarea"></textarea>
+    </div>
+
+    <div class="input-wrap">
+        <label class="f-title" for="Requester">Talep Eden</label>
+        <input type="text" name="Requester" class="input" placeholder="">
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.DateTime)
+        <input class="form-control" type="date" name="DateTime" />
+        @Html.ValidationMessageFor(model => model.DateTime)
+    </div>
+    <br />
+</form>
